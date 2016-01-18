@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# POST-COMMIT HOOK
+#
+# The post-commit hook is invoked after a commit.  Subversion runs
+# this hook by invoking a program (script, executable, binary, etc.)
+# named 'post-commit' (for which this file is a template) with the 
+# following ordered arguments:
+#
+#   [1] REPOS-PATH   (the path to this repository)
+#   [2] REV          (the number of the revision just committed)
+#   [3] TXN-NAME     (the name of the transaction that has become REV)
+
+REPOS="$1"
+REV="$2"
+TXN_NAME="$3"
+
+# OUTPUT="$($REPOS/hooks/lockNewFiles.py $REPOS $REV)"
+# echo "${OUTPUT}" >&2

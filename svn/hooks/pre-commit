@@ -10,7 +10,7 @@ set -e
 
 # Check that the author of this commit has the rights to perform
 # the commit on the files and directories being modified.
-$REPOS/hooks/lockNewFiles.py $REPOS $TXN
+$REPOS/hooks/checkNeedsLock.py $REPOS $TXN
 
 # All checks passed, so allow the commit.
 exit 0

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# START-COMMIT HOOK
+
+REPOS="$1"
+USER="$2"
+
+HOOK_DIR="$REPOS/hooks"
+
+# Exit on all errors.
+set -e
+
+echo $HOOK_DIR >&2
+
+# OUTPUT="$($HOOK_DIR/lockNewFiles.py $REPOS)"
+# echo "${OUTPUT}" >&2
+
+# All checks passed, so allow the commit.
+exit 0
