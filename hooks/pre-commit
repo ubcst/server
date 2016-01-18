@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# PRE-COMMIT HOOK
+
+REPOS="$1"
+TXN="$2"
+
+# Exit on all errors.
+set -e
+
+# Check that the author of this commit has the rights to perform
+# the commit on the files and directories being modified.
+$REPOS/hooks/lockNewFiles.py $REPOS $TXN
+
+# All checks passed, so allow the commit.
+exit 0
