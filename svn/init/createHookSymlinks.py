@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+"""
+ " Creates symlinks in the "hooks/" directory of a repository that point to
+ " the actual scripts in another directory.
+"""
+
 import sys, os
 
 # Get args
