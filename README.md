@@ -6,6 +6,8 @@ This repo contains a variety of scripts for configuring the server.
 
 /svn/init/createHookSymlinks.py - Script that sets up symlinks in the /hooks/ directory of a repository.
 
+/svn/init/aliases/svncreate.sh - Alias that creates a new SVN repository and creates symlinks to a variety of hook scripts.
+
 # Scripts TODO
 - User creation script
 - Other SVN configuration scripts

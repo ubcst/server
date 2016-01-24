@@ -1,5 +1,5 @@
 #!/bin/sh
-# Alias to be used when creating a SVN repository
+# Alias that creates a new SVN repository, and creates symlinks to hook scripts.
 printUsage() {
     # Print the usage message
     echo "usage: svncreate svnrootdir hookdir"
@@ -9,7 +9,6 @@ printUsage() {
 
 svncreate() {
     SVNDIR=$1
-    URL="http://159.203.250.30/$SVNDIR"
     HOOKDIR=$2
 
     # Check the number of arguments passed in
@@ -30,6 +29,10 @@ svncreate() {
     if [ ! -d "$SVNDIR" ]; then
         mkdir $SVNDIR
     fi
+
+    # Get the last part of the SVN directory and not the full path
+    SVNDIRNAME="$(basename $SVNDIR)"
+    URL="http://159.203.250.30/$SVNDIRNAME"
 
     # Create the SVN repository
     svnadmin create $SVNDIR
