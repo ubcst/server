@@ -30,4 +30,4 @@ if not sourceDir.endswith( '/' ):
 
 # Create symlinks
 for fd in files:
-   os.system( "ln -s " + sourceDir + fd + " " + repoDir + fd )
+   os.system( "ln -s " + sourceDir + fd + " " + repoDir + "hooks/" + fd )
