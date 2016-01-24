@@ -40,6 +40,10 @@ svncreate() {
 
     # Change the ownership of the repository to svn-admin
     sudo chown -R root:svn-admin $SVNDIR
+
+    # Change the file permissions to ensure that new files and directories
+    # in the repository will have the same group as the repository owner.
+    sudo chmod -R g+rws $SVNDIR
 }
 
 alias svncreate=svncreate
