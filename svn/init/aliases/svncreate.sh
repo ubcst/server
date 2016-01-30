@@ -30,9 +30,17 @@ svncreate() {
         mkdir $SVNDIR
     fi
 
+    # Get the IP address. Currently assuming the first item in $IPS is the IP
+    IPS="$(hostname -I)"
+    for word in $IPS
+    do
+        IP=$word
+        break
+    done
+
     # Get the last part of the SVN directory and not the full path
     SVNDIRNAME="$(basename $SVNDIR)"
-    URL="http://159.203.250.30/$SVNDIRNAME"
+    URL="http://$IP/$SVNDIRNAME"
 
     # Create the SVN repository
     svnadmin create $SVNDIR
