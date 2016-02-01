@@ -1,27 +1,24 @@
 #!/bin/sh
 # Alias that creates a new SVN repository, and creates symlinks to hook scripts.
-printSvnCreateUsage() {
-    # Print the usage message
-    echo "usage: svncreate svnrootdir hookdir"
-    echo -e "   svnrootdir:\tThe root directory of the repository"
-    echo -e "   hookdir:\tThe directory where the hook scripts are located"
-}
-
 svncreate() {
     SVNDIR=$1
     HOOKDIR=$2
 
+    USAGE_STATEMENT="usage: svncreate svnrootdir hookdir\n"
+    USAGE_STATEMENT+="   svnrootdir:\tThe root directory of the repository\n"
+    USAGE_STATEMENT+="   hookdir:\tThe directory where the hook scripts are located"
+
     # Check the number of arguments passed in
     if [ $# -lt 2 ]; then
         echo "Error: Incorrect number of arguments"
-        printSvnCreateUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 
     # Check if the hook directory exists
     if [ ! -d "$HOOKDIR" ]; then
         echo "Error: Hook directory does not exist"
-        printSvnCreateUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 

@@ -2,22 +2,18 @@
 # Alias that creates user accounts for:
 # - Server SSH access
 # - SVN access
-printNewUserUsage() {
-    # Print the usage message
-    echo "Creates a new SSH and/or SVN user"
-    echo -e "usage: newuser (ssh|svn)+ username"
-    echo -e "   username:\tThe username of the user to add"
-    echo -e "   ssh:\t\tCreates a SSH account for the username"
-    echo -e "   svn:\t\tCreates a SVN account for the username"
-
-    echo -e "Example: newuser ssh svn test"
-    echo -e "Creates \`test' a SSH account and a SVN account for \`test'\n"
-    echo -e "If user already has a SVN account, the svn arugment does not do anything"
-}
-
 newuser() {
     SVN_PASSWD_DIR="/home/svn/.htpasswd"
     SSH_GROUP="www-data"
+
+    USAGE_STATEMENT="Creates a new SSH and/or SVN user\n"
+    USAGE_STATEMENT+="usage: newuser (ssh|svn)+ username\n"
+    USAGE_STATEMENT+="   username:\tThe username of the user to add\n"
+    USAGE_STATEMENT+="   ssh:\t\tCreates a SSH account for the username\n"
+    USAGE_STATEMENT+="   svn:\t\tCreates a SVN account for the username\n\n"
+    USAGE_STATEMENT+="Example: newuser ssh svn test\n\n"
+    USAGE_STATEMENT+="Creates \`test' a SSH account and a SVN account for \`test'\n"
+    USAGE_STATEMENT+="If user already has a SVN account, the svn arugment does not do anything"
 
     SSH=false
     SVN=false
@@ -26,7 +22,7 @@ newuser() {
     # Check the number of arguments passed in
     if [ $# -lt 1 ]; then
         echo "Error: Incorrect number of arguments"
-        printNewUserUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 
@@ -42,7 +38,7 @@ newuser() {
                 SVN=true
             ;;
             -h|--help)
-                printNewUserUsage
+                echo -e $USAGE_STATEMENT
                 return
             ;;
             *)
@@ -54,7 +50,7 @@ newuser() {
     done
     if [ $SVN = false ] && [ $SSH = false ]; then
         echo "Error: Incorrect format"
-        printNewUserUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 

@@ -1,26 +1,22 @@
 #!/bin/sh
 # Alias that can be used to copy an alias to the /etc/profile.d/ directory
 # Also sources the file so that it can be run right away
-printCpaliasUsage() {
-    # Print the usage message
-    echo "usage: cpalias aliasfile"
-    echo -e "   aliasfile:\tThe alias file to copy to /etc/profile.d/"
-}
-
 cpalias() {
     FILE=$1
+    USAGE_STATEMENT="usage: cpalias aliasfile\n"
+    USAGE_STATEMENT+="   aliasfile:\tThe alias file to copy to /etc/profile.d/"
 
     # Check the number of arguments passed in
     if [ $# -lt 1 ]; then
         echo "Error: Incorrect number of arguments"
-        printCpaliasUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 
     # Check if the file exists
     if [ ! -e "$FILE" ]; then
         echo "Error: File does not exist"
-        printCpaliasUsage
+        echo -e $USAGE_STATEMENT
         return
     fi
 
