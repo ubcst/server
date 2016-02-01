@@ -6,18 +6,26 @@ svncreate() {
 
     USAGE_STATEMENT="usage: svncreate svnrootdir hookdir\n"
     USAGE_STATEMENT+="   svnrootdir:\tThe root directory of the repository\n"
-    USAGE_STATEMENT+="   hookdir:\tThe directory where the hook scripts are located"
+    USAGE_STATEMENT+="   hookdir:\tThe directory where the hook scripts are located\n"
+
+    # Check if user wants help
+    if [ $# -ge 1 ]; then
+        if [ $1 = "-h" ] || [ $1 = "--help" ]; then
+            echo -e $USAGE_STATEMENT
+            return
+        fi
+    fi
 
     # Check the number of arguments passed in
     if [ $# -lt 2 ]; then
-        echo "Error: Incorrect number of arguments"
+        echo -e "Error: Incorrect number of arguments\n"
         echo -e $USAGE_STATEMENT
         return
     fi
 
     # Check if the hook directory exists
     if [ ! -d "$HOOKDIR" ]; then
-        echo "Error: Hook directory does not exist"
+        echo -e "Error: Hook directory does not exist\n"
         echo -e $USAGE_STATEMENT
         return
     fi
