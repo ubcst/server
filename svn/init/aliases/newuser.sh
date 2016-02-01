@@ -2,7 +2,7 @@
 # Alias that creates user accounts for:
 # - Server SSH access
 # - SVN access
-printUsage() {
+printNewUserUsage() {
     # Print the usage message
     echo "Creates a new SSH and/or SVN user"
     echo -e "usage: newuser (ssh|svn)+ username"
@@ -26,7 +26,7 @@ newuser() {
     # Check the number of arguments passed in
     if [ $# -lt 1 ]; then
         echo "Error: Incorrect number of arguments"
-        printUsage
+        printNewUserUsage
         return
     fi
 
@@ -42,7 +42,7 @@ newuser() {
                 SVN=true
             ;;
             -h|--help)
-                printUsage
+                printNewUserUsage
                 return
             ;;
             *)
@@ -54,7 +54,7 @@ newuser() {
     done
     if [ $SVN = false ] && [ $SSH = false ]; then
         echo "Error: Incorrect format"
-        printUsage
+        printNewUserUsage
         return
     fi
 
