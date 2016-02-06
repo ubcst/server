@@ -18,13 +18,28 @@ def getNewFiles( output ):
    changedFiles = cmdOutput.split("\n")
    for changedFile in changedFiles:
       fd = changedFile.split()
+      if len(fd) <= 0:
+         continue
+
       # Check if item is a new item
-      if "A" in fd:
-         # Check if newly added item is a new directory
-         newFile = fd[-1]
-         if not newFile.endswith('/'):
-            print "New file: " + newFile
-            files.append( newFile )
+      # Assuming that the status is the first item after splitting
+      if "A" != fd[0]:
+         continue
+
+      # Check if newly added item is a new directory
+      newFile = fd[-1]
+      if newFile.endswith('/'):
+         continue
+
+      # Reconstruct file name
+      newFile = "\""
+      for i in range(1, len(fd)):
+         newFile = newFile + fd[i]
+         if i != (len(fd) - 1):
+            newFile = newFile + " "
+      newFile = newFile + "\""
+
+      files.append( newFile )
    return files
 
 # Check if the correct number of args is passed
