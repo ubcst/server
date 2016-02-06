@@ -55,7 +55,7 @@ svncreate() {
     createHookSymlinks.py $SVNDIR $HOOKDIR
 
     # Change the ownership of the repository to svn-admin
-    sudo chown -R root:svn-admin $SVNDIR
+    sudo chown -R www-data:svn-write $SVNDIR
 
     # Change the file permissions to ensure that new files and directories
     # in the repository will have the same group as the repository owner.
