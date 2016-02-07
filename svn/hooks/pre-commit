@@ -12,6 +12,9 @@ set -e
 # crashing.
 $REPOS/hooks/checkHiddenFiles.py $REPOS $TXN
 
+# Checks the files to be committed to see if they have an illegal character in their name.
+$REPOS/hooks/checkIllegalFilenames.py $REPOS $TXN
+
 # Check that the author of this commit has the rights to perform
 # the commit on the files and directories being modified.
 $REPOS/hooks/checkNeedsLock.py $REPOS $TXN
