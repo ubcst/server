@@ -56,7 +56,7 @@ print cmdOutput
 illegalFiles = getIllegalFiles( cmdOutput )
 
 if len(illegalFiles) > 0:
-   ret = "Some of the files you are trying to commit are named with an " + \
+   ret = "Some of the files you are trying to commit are named with an illegal" + \
          "character. Please rename them and try committing again.\n" + \
          "Illegal characters are: " + " ".join(illegalChars) + "\n" + \
          "The files containing illegal characters are:\n" + \
