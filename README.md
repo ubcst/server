@@ -17,3 +17,14 @@ This repo contains a variety of scripts for configuring the server.
 # Scripts TODO
 - Other SVN configuration scripts
 - Generic Apache/WebDAV startup/setup script (not sure if needed, can just use: /etc/init.d/apache2 restart)
+- Write hook script to prevent non-privileged users from deleting files
+
+## What to Still Test
+The following are scenarios that have not been tested with the SVN hooks I wrote:
+- User creates new repository and commits it
+  - Test creating from server
+  - Test creating from local machine
+- User pulls an existing repository
+  - All files should be read-only
+- User adds files
+  - By default they should have a lock on it
