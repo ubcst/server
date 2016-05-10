@@ -17,8 +17,11 @@ This document contains information on how to run the SVN server.
 
 ## Creating New SVN Directory
 To create a SVN directory you first need to create it and then check it out in order to make it a working copy. You also need to set up the correct ownership.
+
 1. `svnadmin create <directory>`
+
 2. `svn co <URL to that directory> <directory> --username <username>`
+
 3. `sudo chown -R root:subversion <directory>`
 
 **Example**
@@ -47,14 +50,18 @@ If not, the commit does not go through.
 May need to add another pre-commit check to see if user performing the commit has the lock for the specified file.
 
 **Note:** It is not recommended to perform any other SVN commands within start/pre/post hooks because:
+
 1. The client would not know of the changes and would run into issues when they try to commit again.
+
 2. You have to have some way to pass user credentials to the hooks. Currently there is no way to do so.
 
 ## Permissions
 There are two sets of permissions in the server:
+
 1. Accessing SVN repo via web
   - Passwords can be found in `/home/svn/.htpasswd`.
   - When accessing the server via a browser, a popup should appear asking for a username and password. To change the prompt message, look at `/home/svn/.htaccess`.
+
 2. Permissions for checking out files
   - There are two SVN groups in `/etc/group`. You need to set the permissions per file/directory in order for one to check out the files in that directory.
   - Need to set per file/directory
@@ -72,6 +79,9 @@ All aliases are kept in `/etc/profile.d/`
  
 ## SVN User Setup
 The following steps should be followed to get a user started:
+
 1. Get user to download TortoiseSVN: https://tortoisesvn.net/downloads.html
+
 2. Create an SVN account for the user.
+
 3. SVN Checkout one or more of the respositories from the URL.
